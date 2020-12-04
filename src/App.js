@@ -3,12 +3,9 @@ import Header from './Header'
 import Customize from './Customize'
 import Cart from './Cart'
 import DefiningSummary from './DefiningSummary'
-import DefiningTotal from './DefiningTotal'
 import DefiningFeatures from './DefiningFeatures'
 
-// Normalizes string as a slug - a string that is safe to use
-// in both URLs and html attributes
-import slugify from 'slugify';
+
 
 import './App.css';
 
@@ -63,7 +60,13 @@ class App extends Component {
       currencies={USCurrencyFormat} 
     />
 
-    const total = <DefiningTotal infoProp={this.state.selected} />
+    const total = Object.keys(this.state.selected).reduce(
+      (acc, curr) => acc + this.state.selected[curr].cost,
+      0
+    );
+    
+    
+   
     
 
     return (
